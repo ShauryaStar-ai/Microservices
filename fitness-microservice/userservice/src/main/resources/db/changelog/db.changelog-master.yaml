@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/01-initial.sql
+  - include:
+      file: db/changelog/02-AddSerial.sql
+
