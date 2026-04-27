@@ -5,7 +5,9 @@ import com.shaurya.activityService.DTO.ActiviyDTO;
 import com.shaurya.activityService.Entity.Activity;
 import com.shaurya.activityService.Repository.ActivityRepo;
 import org.bson.types.ObjectId;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +17,17 @@ import java.util.stream.Collectors;
 public class ActivityService {
     @Autowired
     ActivityRepo activityRepo;
+    @Autowired
+    RabbitTemplate rabbitTemplate;
 
     @Autowired
     UserValidationService userValidationService;
-
+    @Value("${rabbitmq.exchange.name}")
+private String exhange;
+    @Value("${rabbitmq.exchange.key}")
+private String routingkey;
     public ActiviyDTO trackActivity(ActivityRequest request){
+
         // checking if user exists or not
         boolean isuservalid = userValidationService.validateUser(request.getUserId());
         if(!isuservalid){
@@ -34,7 +42,12 @@ public class ActivityService {
                 .additionalMatrics(request.getAdditionalMatrics())
                 .build();
         Activity saved = activityRepo.save(activityBuiltFromRequest);
+        // publish to rabbit mq for processing
+        try{
 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return mapToActivityDTO(saved);
     }
 
