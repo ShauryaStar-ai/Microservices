@@ -4,6 +4,7 @@ import com.shaurya.activityService.DTO.ActivityRequest;
 import com.shaurya.activityService.DTO.ActiviyDTO;
 import com.shaurya.activityService.Entity.Activity;
 import com.shaurya.activityService.Repository.ActivityRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Slf4j
 @Service
 public class ActivityService {
     @Autowired
@@ -24,8 +25,11 @@ public class ActivityService {
     UserValidationService userValidationService;
     @Value("${rabbitmq.exchange.name}")
 private String exhange;
-    @Value("${rabbitmq.exchange.key}")
+    @Value("${rabbitmq.routing.key}")
 private String routingkey;
+
+
+    // This is the producer to the queue meathod
     public ActiviyDTO trackActivity(ActivityRequest request){
 
         // checking if user exists or not
@@ -44,9 +48,9 @@ private String routingkey;
         Activity saved = activityRepo.save(activityBuiltFromRequest);
         // publish to rabbit mq for processing
         try{
-
+            rabbitTemplate.convertAndSend(exhange,routingkey,saved);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            log.error("Failer to add to rabbit mq"+e.getMessage());
         }
         return mapToActivityDTO(saved);
     }

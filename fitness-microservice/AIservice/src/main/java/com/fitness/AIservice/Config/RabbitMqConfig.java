@@ -1,6 +1,5 @@
-package com.shaurya.activityService.Config;
+package com.fitness.AIservice.Config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
