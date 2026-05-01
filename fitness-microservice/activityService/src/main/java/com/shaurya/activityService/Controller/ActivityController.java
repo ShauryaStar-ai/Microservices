@@ -18,7 +18,8 @@ public class ActivityController {
 
     @PostMapping
     public ResponseEntity<ActiviyDTO> trackActivity(@RequestBody ActivityRequest request){
-        return ResponseEntity.ok(activityService.trackActivity(request));
+        return ResponseEntity.ok(activityService
+                .trackActivity(request));
     }
 
     @GetMapping("/userAllEntries/{id}")

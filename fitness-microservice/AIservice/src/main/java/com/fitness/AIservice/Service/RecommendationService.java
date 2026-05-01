@@ -21,7 +21,7 @@ public class RecommendationService {
 
     @Autowired 
     WebClient activityServiceWebClient;
-
+    // get activity by id from mongoDB
     public Optional<ActiviyDTO> getActivity(ObjectId activityId) {
         try {
             return activityServiceWebClient.get()
