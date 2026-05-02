@@ -37,7 +37,9 @@ public class RecommendationService {
             return Optional.empty();
         }
     }
-
+    public void saveRecommendation(Recommendation recommendation){
+        recommendationRepo.save(recommendation);
+    }
     // use mongo repo
     public  List<Recommendation> getUserRecommendation(Long userid) {
     return recommendationRepo.findByuserId(userid);

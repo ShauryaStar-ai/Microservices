@@ -23,8 +23,10 @@ public class Recommendation  {
     private ObjectId activityId;
     private Long userId;
     private com.fitness.AIservice.Entity.ActivityType Type;
+    private String analysis;
     private List<String> improvements;
     private List<String> sugessions;
+    private List<String> safety;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate

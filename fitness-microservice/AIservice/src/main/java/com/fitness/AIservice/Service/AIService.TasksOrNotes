@@ -1,0 +1,39 @@
+now this is how a recommendation is a might be needed to be turend into a recommmendation object
+analysis,
+improvements,
+suggestions,
+safety,
+
+
+{
+  "analysis": {
+    "overall": "The running activity lasted for 30 minutes and resulted in the burning of 100 calories. This indicates a moderate level of intensity, but the performance could potentially be improved with adjustments in pace and duration.",
+    "pace": "The average pace can be calculated by dividing the total distance covered during the run by the duration. Given that distance is not provided, focusing on maintaining a consistent speed and gradually increasing distance in future workouts is advisable.",
+    "heartRate": "Heart rate data is not provided, but it is crucial to monitor your heart rate during workouts to ensure you are training within your optimal heart rate zone. This could lead to improved cardiovascular fitness and performance.",
+    "caloriesBurned": "Burning 100 calories in 30 minutes suggests a low to moderate metabolic intensity. To enhance caloric expenditure, consider increasing the duration or intensity of the run."
+  },
+  "improvements": [
+    {
+      "area": "Pace and Duration",
+      "recommendation": "Aim to gradually increase your running duration beyond 30 minutes or incorporate intervals of higher intensity for more effective cardiovascular training and increased calorie burn."
+    },
+    {
+      "area": "Heart Rate Monitoring",
+      "recommendation": "Utilize a heart rate monitor during your runs to gauge your intensity level. Aim to stay within 70-85% of your maximum heart rate for effective fat burning and cardiovascular training."
+    }
+  ],
+  "suggestions": [
+    {
+      "workout": "Interval Running",
+      "description": "Incorporate interval training into your running routine. Try alternating between 1 minute of sprinting and 2 minutes of walking/jogging for a total of 30 minutes. This will improve your speed and endurance while burning more calories."
+    },
+    {
+      "workout": "Long Slow Distance Run",
+      "description": "Once a week, aim for a long, slow distance run where you gradually increase the time to 45 minutes to 1 hour. This will help build your aerobic capacity and endurance without overstraining your body."
+    }
+  ],
+  "safety": [
+    "Always warm up before beginning your run to prepare your muscles and prevent injury.",
+    "Hydrate adequately before, during, and after your run to maintain proper hydration levels."
+  ]
+}

@@ -2,6 +2,8 @@ package com.fitness.AIservice.DTO;
 
 import com.fitness.AIservice.Entity.ActivityType; // Assuming ActivityType is also available or copied
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
@@ -12,6 +14,8 @@ import java.time.LocalDateTime;
 import java.util.Map;
 
 @Data
+@Getter
+@Setter
 public class ActiviyDTO {
     @Id
     private ObjectId id;

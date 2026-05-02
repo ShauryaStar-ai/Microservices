@@ -23,21 +23,45 @@ public class ActivityAIService {
     }
 
     private String createPromptForActivity(ActiviyDTO activity) {
-        return String.format(
-                "Analyze this fitness activity and give improvement advice:\n" +
-                        "- Type: %s\n" +
-                        "- Duration: %d minutes\n" +
-                        "- Calories Burnt: %d\n" +
-                        "- Start Time: %s\n" +
-                        "- Additional Metrics: %s\n\n" +
-                        "Provide:\n" +
-                        "1. Performance analysis\n" +
-                        "2. Improvement suggestions\n" +
-                        "3. Safety tips\n",
+        return String.format("""
+        Analyze this fitness activity and provide detailed recommendations in the following EXACT JSON format:
+        {
+          "analysis": {
+            "overall": "Overall analysis here",
+            "pace": "Pace analysis here",
+            "heartRate": "Heart rate analysis here",
+            "caloriesBurned": "Calories analysis here"
+          },
+          "improvements": [
+            {
+              "area": "Area name",
+              "recommendation": "Detailed recommendation"
+            }
+          ],
+          "suggestions": [
+            {
+              "workout": "Workout name",
+              "description": "Detailed workout description"
+            }
+          ],
+          "safety": [
+            "Safety point 1",
+            "Safety point 2"
+          ]
+        }
+
+        Analyze this activity:
+        Activity Type: %s
+        Duration: %d minutes
+        Calories Burned: %d
+        Additional Metrics: %s
+        
+        Provide detailed analysis focusing on performance, improvements, next workout suggestions, and safety guidelines.
+        Ensure the response follows the EXACT JSON format shown above.
+        """,
                 activity.getType(),
                 activity.getDuration(),
                 activity.getCaloriesBurnt(),
-                activity.getStartTime(),
                 activity.getAdditionalMatrics()
         );
     }
