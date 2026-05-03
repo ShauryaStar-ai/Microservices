@@ -27,8 +27,8 @@ public class ActivityMessageListener {
         log.info("Received Activity For Processing: {}", activity.getId());
 
         String aiResponse = activityAIService.generateRecommendaion(activity);
-        // now this needs to be paresd as this full JSON
-        // we only need content from this
+
+        // now this needs to be paresd as this full JSON we only need content from this
 
         processAIResponce(activity,aiResponse);
 
@@ -47,21 +47,28 @@ public class ActivityMessageListener {
 
             // The content is a string that needs to be parsed again
             JsonNode recommendationJson = mapper.readTree(contentNode.asText());
+            // for debugging
+            log.info("Activty Recommendation parsed {}",recommendationJson.toString());
 
+            // building the recommendation object and saving it
             recommendation.setActivityId(activiy.getId());
             recommendation.setUserId(activiy.getUserId());
             recommendation.setType(activiy.getType());
-            recommendation.setAnalysis(recommendationJson.path("analysis").asText());
+            recommendationJson.path("analysis").asText();
+
+
 
             List<String> improvements = new ArrayList<>();
             for (JsonNode node : recommendationJson.path("improvements")) {
-                improvements.add(node.asText());
+                String text = node.path("recommendation").asText();
+                improvements.add(text);
             }
             recommendation.setImprovements(improvements);
 
             List<String> suggestions = new ArrayList<>();
             for (JsonNode node : recommendationJson.path("suggestions")) {
-                suggestions.add(node.asText());
+                String text = node.path("description").asText();
+                suggestions.add(text);
             }
             recommendation.setSugessions(suggestions); // Note: typo in entity name 'sugessions'
 
@@ -71,6 +78,8 @@ public class ActivityMessageListener {
             }
             recommendation.setSafety(safety);
             recommendationService.saveRecommendation(recommendation);
+
+
 
         }
         catch (Exception e) {
