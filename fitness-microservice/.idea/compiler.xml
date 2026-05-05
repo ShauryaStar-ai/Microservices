@@ -8,10 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
-        <module name="AIservice" />
         <module name="configserver" />
+        <module name="AIservice" />
+        <module name="Gateway" />
       </profile>
-      <profile name="Annotation profile for activityService" enabled="true">
+      <profile name="Annotation profile for userservice" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -27,6 +28,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="AIservice" options="-parameters" />
       <module name="EurekaServer" options="-parameters" />
+      <module name="Gateway" options="-parameters" />
       <module name="activityService" options="-parameters" />
       <module name="configserver" options="-parameters" />
       <module name="userservice" options="-parameters" />
