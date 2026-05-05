@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="EurekaServer" />
-        <module name="configserver" />
         <module name="AIservice" />
         <module name="Gateway" />
       </profile>
@@ -23,6 +22,9 @@
         <module name="userservice" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="configserver" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
