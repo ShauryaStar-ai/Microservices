@@ -9,9 +9,17 @@ spring:
     gateway:
       routes:
         - id: user-service
-          uri: lb://USERSERVICE
+          uri: lb://userservice
           predicates:
             - Path=/api/users/**
+        - id: activity-service
+          uri: lb://activityService
+          predicates:
+            - Path=/api/activities/**
+        - id: ai-service
+          uri: lb://AIservice
+          predicates:
+            - Path=/recommendations/**
 
 eureka:
   client:
